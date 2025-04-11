@@ -6,7 +6,6 @@ def blur_license_plates(input_folder, output_folder):
     # Cria o leitor OCR
     reader = easyocr.Reader(['en'])
     
-    # Garante que a pasta de saída exista
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
 
@@ -15,7 +14,6 @@ def blur_license_plates(input_folder, output_folder):
             image_path = os.path.join(input_folder, filename)
             image = cv2.imread(image_path)
             
-            # Detecta texto na imagem (possíveis placas)
             results = reader.readtext(image, detail=1)
             
             for (bbox, text, prob) in results:
